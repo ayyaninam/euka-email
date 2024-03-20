@@ -1,0 +1,21 @@
+{% extends "base/base.html" %}
+{% block content %}
+<ul style="list-style: none; display: flex; border: 2px solid grey;">
+    <li style="margin: 0 10px;">email_host_user</li>
+    <li style="margin: 0 10px;">email_host_password</li>
+    <li style="margin: 0 10px;">email_host_port</li>
+    <li style="margin: 0 10px;">email_host_smtp_host</li>
+    <li style="margin: 0 10px;">email_host_use_tls</li>
+    <li style="margin: 0 10px;">email_working</li>
+  </ul>
+{% for email in all_emails %}
+  <ul style="list-style: none; display: flex; border: 2px solid grey;">
+    <li style="margin: 0 10px;">{{email.email_host_user}}</li>
+    <li style="margin: 0 10px;">{{email.email_host_password}}</li>
+    <li style="margin: 0 10px;">{{email.email_host_port}}</li>
+    <li style="margin: 0 10px;">{{email.email_host_smtp_host}}</li>
+    <li style="margin: 0 10px;">{{email.email_host_use_tls}}</li>
+    <li style="margin: 0 10px;">{{email.email_working}}</li>
+  </ul>
+{% endfor %}
+{% endblock content %}

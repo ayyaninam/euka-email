@@ -1,0 +1,23 @@
+{% extends "base/base.html" %}
+{% block content %}
+<form action="{% url 'base:add_email' %}" method="POST" style="margin-top: 50px;">
+    {% csrf_token %}
+    <br>
+    <label for="email_host_use_tls">email_host_use_tls</label>
+    <input style="margin-top: 10px;" type="checkbox" name="email_host_use_tls">
+    <br>
+    <label for="email_host_user">email_host_user</label>
+    <input style="margin-top: 10px;" type="text" name="email_host_user">
+    <br>
+    <label for="email_host_password">email_host_password</label>
+    <input style="margin-top: 10px;" type="text" name="email_host_password">
+    <br>
+    <label for="email_host_port">email_host_port</label>
+    <input style="margin-top: 10px;" type="number" name="email_host_port">
+    <br>
+    <label for="email_host_smtp_host">email_host_smtp_host</label>
+    <input style="margin-top: 10px;" type="text" name="email_host_smtp_host">
+    <br>
+    <button type="submit">Login</button>
+</form>
+{% endblock content %}
