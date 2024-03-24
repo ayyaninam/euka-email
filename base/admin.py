@@ -9,4 +9,4 @@ class ScheduledEmailAdmin(admin.ModelAdmin):
 admin.site.register(Email, EmailAdmin)
 admin.site.register(ScheduledEmail, ScheduledEmailAdmin)
 admin.site.register(Campaign)
-admin.site.register(TestEmail)
+admin.site.register(SendToEmail)

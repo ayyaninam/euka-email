@@ -167,10 +167,10 @@ def schedule_email_under_celery(campaign_id):
         pass
 
     if campaign:
-        # base_time_gap_in_sec = int(campaign.base_time_gap) * 60
-        # random_time_gap_in_sec = int(campaign.random_time_gap) * 60
-        base_time_gap_in_sec = 1
-        random_time_gap_in_sec = 1
+        base_time_gap_in_sec = int(campaign.base_time_gap) * 60
+        random_time_gap_in_sec = int(campaign.random_time_gap) * 60
+        # base_time_gap_in_sec = 1
+        # random_time_gap_in_sec = 1
 
         today_time = datetime.datetime.now(tz=get_current_timezone()) 
         # today_time = datetime.datetime.now(tz=get_current_timezone()) + datetime.timedelta(minutes=5)
@@ -225,11 +225,12 @@ def schedule_email_under_celery(campaign_id):
         return to_emails
 
 def mark_email_as_sent(from_email, to_email, campaign_id, sent=True, final_result=None):
+    campaign = Campaign.objects.get(id=campaign_id)
 
     scheduled_email = ScheduledEmail.objects.filter(
         from_email =from_email,
         to_email = to_email,
-        attached_campaign=Campaign.objects.get(id=campaign_id),
+        attached_campaign=campaign,
     )
 
     if scheduled_email:
@@ -240,6 +241,10 @@ def mark_email_as_sent(from_email, to_email, campaign_id, sent=True, final_resul
 
     if final_result:
         scheduled_email.update(final_result=final_result)
+
+    campaign.today_email_sent = campaign.today_email_sent+1
+    campaign.total_email_sent = campaign.total_email_sent+1
+    campaign.save()
 
 @shared_task
 def send_email_under_beat(from_email_id, to_email, campaign_id, time_to_send=None):
@@ -261,4 +266,5 @@ def send_email_under_beat(from_email_id, to_email, campaign_id, time_to_send=Non
 @shared_task
 def make_email_at_zero():
     all_emails = Email.objects.all().update(today_email_sent=0)
+    all_emails = Campaign.objects.all().update(today_email_sent=0)
     return True

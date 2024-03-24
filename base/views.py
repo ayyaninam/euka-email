@@ -5,7 +5,7 @@ from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.shortcuts import redirect
 from .models import Email as Email_model
-from .models import TestEmail
+from .models import SendToEmail
 
 # Create your views here.
 def home(request):
@@ -65,7 +65,7 @@ def add_campaign(request):
 
 def generate_fake_email(request):
     for i in range(1000):
-        TestEmail.objects.create(
+        SendToEmail.objects.create(
             email = f"{i}@gmail.com"
         )
     return HttpResponse('Success!')

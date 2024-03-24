@@ -1,0 +1,13 @@
+{
+    "builds": [{
+        "src": "euka_email/wsgi.py",
+        "use": "@vercel/python",
+        "config": { "maxLambdaSize": "15mb", "runtime": "python3.11.1" }
+    }],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "euka_email/wsgi.py"
+        }
+    ]
+}
