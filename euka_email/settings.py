@@ -11,11 +11,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-p)q07rcj4coqtn43d+b4pj^3-^&cf%8@-v#$$3qlk#w6nh4y^n'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-# python3 manage.py collectstatic --noinput
+
 
 # Application definition
 
