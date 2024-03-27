@@ -15,6 +15,8 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
+# python3 manage.py collectstatic --noinput
+
 # Application definition
 
 INSTALLED_APPS = [

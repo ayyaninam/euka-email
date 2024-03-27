@@ -20,7 +20,7 @@ echo "Installing Dependencies..."
 pip install -r requirements.txt --no-input
 
 echo "Serving Static Files..."
-python3 manage.py collectstatic --noinput
+
 
 echo "Running Database migration..."
 python3 manage.py makemigrations
