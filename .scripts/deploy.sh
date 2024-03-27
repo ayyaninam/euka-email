@@ -30,8 +30,12 @@ python3 manage.py migrate
 deactivate
 echo "Virtual env 'mb' Deactivated !"
 
-echo "Reloading App..."
+echo "Reloading Gunicorn..."
 #kill -HUP `ps -C gunicorn fch -o pid | head -n 1`
 ps aux |grep gunicorn |grep euka_email | awk '{ print $2 }' |xargs kill -HUP
+
+echo "Reloading Celery..."
+#kill -HUP `ps -C gunicorn fch -o pid | head -n 1`
+ps aux | grep celery | grep euka_email | awk '{print $2}' |xargs kill -HUP
 
 echo "Deployment Finished !"
