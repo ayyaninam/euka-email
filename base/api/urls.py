@@ -16,5 +16,7 @@ urlpatterns = [
     path('run-campaign/<str:user_id>/<int:campaign_id>/<str:action>', views.run_campaign, name="run_campaign"),
     path('campaign-details/<str:user_id>/<int:campaign_id>', views.campaign_details, name="campaign_details"),
     path('campaign-activity/<int:campaign_id>', views.campaign_activity, name="campaign_activity"),
+    
+    path('edit-daily-sending-limit/<int:email_id>/<int:daily_sending_limit>', views.edit_daily_sending_limit, name="edit_daily_sending_limit"),
 
 ]
