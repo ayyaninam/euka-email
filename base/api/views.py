@@ -55,8 +55,18 @@ def delete_user_email(request, user_id, email_id):
     status = 400 if not (deletable_emails) else 200
 
     if deletable_emails:
+        emails_to_delete = ScheduledEmail.objects.filter(from_email__in=deletable_emails)
+        if emails_to_delete:
+            for email in emails_to_delete:
+                if email.task_attached:
+                    # Delete associated clocked entry
+                    email.task_attached.clocked.delete()
+                    # Delete task_attached entry
+                    email.task_attached.delete()
+
+            emails_to_delete.delete()
         deletable_emails.delete()
-    
+
     return Response({"status": status })
 
 
