@@ -211,7 +211,8 @@ def edit_daily_sending_limit(request, email_id, daily_sending_limit):
     status = 404
     if email:
         email = email.first()
-        email.update(daily_sending_limit=daily_sending_limit)
+        email.daily_sending_limit=daily_sending_limit
+        email.save()
         status = 200
 
     return Response({"status": status })
