@@ -40,7 +40,7 @@ def send_test_email_adding_models(config):
         # auth_user = config.email_host_user,
         # auth_password = config.email_host_password,
         fail_silently = False,
-        recipient_list = [settings.EMAIL_RECIEVER_AS_A_CHECKER],
+        recipient_list = [settings.EMAIL_RECEIVER_AS_A_CHECKER],
         connection=connection,
         html_message=None
     )
@@ -103,7 +103,7 @@ def schedule_email_creator_in_db(from_email, to_emails, attached_campaign_id, ti
 #         # auth_user = config.email_host_user,
 #         # auth_password = config.email_host_password,
 #         fail_silently = False,
-#         recipient_list = [settings.EMAIL_RECIEVER_AS_A_CHECKER],
+#         recipient_list = [settings.EMAIL_RECEIVER_AS_A_CHECKER],
 #         connection=connection,
 #         html_message=None
 #     )

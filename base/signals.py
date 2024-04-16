@@ -10,7 +10,7 @@ from base.tasks import schedule_email_under_celery, delete_scheduled_cluster
 @receiver(post_save, sender=Email)
 def working_email_checker(sender, instance, **kwargs):
     if not instance.verified:
-        send_test_email_adding_models.delay(
+        send_test_email_adding_models(
             instance.id,
             instance.email_host_user,
             instance.email_host_password,
