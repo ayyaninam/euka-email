@@ -6,7 +6,6 @@ import datetime
 from base.tasks import schedule_email_under_celery, delete_scheduled_cluster
 
 
-
 @receiver(post_save, sender=Email)
 def working_email_checker(sender, instance, **kwargs):
     if not instance.verified:
@@ -27,15 +26,13 @@ def campaign_active_email_scheduler(sender, instance, **kwargs):
     try:
         old_status = Campaign.objects.get(id=instance.id).status
     except:
-        old_status = 'New'
-        instance.status = 'Stop'
+        old_status = "New"
+        instance.status = "Stop"
 
-    if old_status != 'New':
-        if ((old_status == "In Progress") and (new_status == "Stop")):
-            # deleting the cluster; and scheduled emails 
+    if old_status != "New":
+        if (old_status == "In Progress") and (new_status == "Stop"):
+            # deleting the cluster; and scheduled emails
             # if someone stop the campaign in middle.
             delete_scheduled_cluster.delay(campaign_id=instance.id)
-
-        elif ((old_status == "Stop") and (new_status == "In Progress")):
-
+        elif (old_status == "Stop") and (new_status == "In Progress"):
             schedule_email_under_celery.delay(campaign_id=instance.id)
