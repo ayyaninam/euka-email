@@ -24,6 +24,8 @@ class CampaignSerializer(serializers.ModelSerializer):
             "today_email_sent",
             "total_email_sent",
             "status",
+            "from_emails",
+            "to_emails",
         ]
         # depth = 1
 
@@ -35,6 +37,8 @@ class AllCampaignSerializer(serializers.ModelSerializer):
             "created_at",
             "name",
             "status",
+            "from_emails",
+            "to_emails",
         ]
 
 class ClockedSerializer(serializers.ModelSerializer):

@@ -170,7 +170,7 @@ from celery.schedules import crontab
 
 CELERY_BEAT_SCHEDULE = {
     "run-at-midnight-to-set-daily-sending-0": {
-        "task": "base.tasks.make_email_at_zero",  # Replace 'your_task_function' with the name of your Celery task function
+        "task": "base.tasks.make_email_at_zero",
         "schedule": crontab(minute=0, hour=0),  # Schedule to run at midnight (0:00)
     },
 }
