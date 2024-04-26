@@ -22,7 +22,7 @@ def add_user_email(request):
         user_id = request.data["user_id"]
         try:
             Email.objects.get(email_host_user=email_host_user)
-            return Response({"status": 304, "detail": "Email Already Exist"})
+            return Response({"status": 304, "detail": "This email already exists. Please add a new email."})
         except:
             new_email = Email.objects.create(
                 user_id=user_id,
@@ -37,7 +37,7 @@ def add_user_email(request):
             return Response(
                 {
                     "status": 201,
-                    "detail": "Email Successfully linked with your account. We are validating your email to check if it allow us to send email. You can see the status of your email in Emails tab.",
+                    "detail": "We are validating your email to check if it allow us to send email. You can see the status of your email in the My Emails tab.",
                 }
             )
 
