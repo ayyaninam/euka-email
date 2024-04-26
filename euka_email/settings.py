@@ -1,4 +1,6 @@
 from pathlib import Path
+import logging
+import sys
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -92,11 +94,10 @@ else:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
-            "OPTIONS": {"options": "-c search_path=email_django"},
-            "NAME": "postgres",
-            "USER": "postgres.guyvooihehhpnerxcmcy",
-            "PASSWORD": "deArtnFsMZr3bkcQ",
-            "HOST": "aws-0-us-west-1.pooler.supabase.com",
+            "NAME": "eukaemail",
+            "USER": "ayyan",
+            "PASSWORD": "yani1Mohar",
+            "HOST": "localhost",
             "PORT": "5432",
         }
     }
@@ -172,5 +173,30 @@ CELERY_BEAT_SCHEDULE = {
     "run-at-midnight-to-set-daily-sending-0": {
         "task": "base.tasks.make_email_at_zero",
         "schedule": crontab(minute=0, hour=0),  # Schedule to run at midnight (0:00)
+    },
+}
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "%(asctime)s %(name)-12s %(levelname)-8s %(message)s",
+        },
+    },
+    "handlers": {
+        "console": {
+            "level": "INFO",
+            "class": "logging.StreamHandler",
+            "stream": sys.stdout,
+            "formatter": "verbose",
+        },
+    },
+    "loggers": {
+        "": {
+            "handlers": ["console"],
+            "level": "INFO",
+            "propagate": True,
+        },
     },
 }

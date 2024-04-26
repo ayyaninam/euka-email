@@ -11,8 +11,9 @@ class EmailSerializer(serializers.ModelSerializer):
             "email_host_user",
             "daily_sending_limit",
             "today_email_sent",
-            "verified"
+            "verified",
         ]
+
 
 class CampaignSerializer(serializers.ModelSerializer):
     class Meta:
@@ -31,6 +32,7 @@ class CampaignSerializer(serializers.ModelSerializer):
         ]
         # depth = 1
 
+
 class AllCampaignSerializer(serializers.ModelSerializer):
     class Meta:
         model = Campaign
@@ -47,21 +49,25 @@ class AllCampaignSerializer(serializers.ModelSerializer):
             "body",
         ]
 
+
 class ClockedSerializer(serializers.ModelSerializer):
     class Meta:
         model = ClockedSchedule
-        fields = ['clocked_time']
+        fields = ["clocked_time"]
+
 
 class TaskAttachedSerializer(serializers.ModelSerializer):
     clocked = ClockedSerializer()
+
     class Meta:
         model = PeriodicTask
-        fields = ['clocked']
+        fields = ["clocked"]
+
 
 class ScheduledEmailSerializer(serializers.ModelSerializer):
     task_attached = TaskAttachedSerializer()
     from_email = EmailSerializer()
-    
+
     class Meta:
         model = ScheduledEmail
         fields = [
